@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Feedbackcards</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="feedbackcard in vm.feedbackcards"
+       data-ui-sref="feedbackcards.view({ feedbackcardId: feedbackcard._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="feedbackcard.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="feedbackcard.user" data-ng-bind="feedbackcard.user.displayName"></span>
+        <span data-ng-if="!feedbackcard.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="feedbackcard.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.feedbackcards.$resolved && !vm.feedbackcards.length">
+    No Feedbackcards yet, why don't you <a data-ui-sref="feedbackcards.create">create one</a>?
+  </div>
+</section>
